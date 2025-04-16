@@ -97,10 +97,10 @@ class PhrasesWidget {
         /* نافذة العبارات */
         .phrases-widget-overlay {
           position: fixed;
-         bottom : 90px;
+         bottom : 290px;
           left: 0;
           width: 100%;
-          height: 490px;
+          height: 320px;
           background-color: rgba(0, 0, 0, 0.8);
           z-index: 1000;
           display: flex;
