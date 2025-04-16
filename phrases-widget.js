@@ -97,7 +97,7 @@ class PhrasesWidget {
         /* نافذة العبارات */
         .phrases-widget-overlay {
           position: fixed;
-          top: 220px;
+         bottom : 90px;
           left: 0;
           width: 100%;
           height: 490px;
