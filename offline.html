@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معهد بالعلم نرتقي - لا يوجد اتصال</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 600px;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            width: 150px;
+            margin-bottom: 1.5rem;
+        }
+        
+        h1 {
+            color: #d9534f;
+            margin-bottom: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .icon {
+            font-size: 4rem;
+            color: #d9534f;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #5bc0de;
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: #31b0d5;
+        }
+        
+        .connection-check {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- استبدل هذا بمصدر لوجو المعهد -->
+        <img src="/images/logo.png" alt="معهد  بالعلم نرتقي" class="logo">
+        
+        <div class="icon">⚠️</div>
+        
+        <h1>عذراً، لا يوجد اتصال بالإنترنت</h1>
+        
+        <p>
+            نعتذر منكم، يبدو أن هناك مشكلة في اتصال الإنترنت لديكم.
+            <br>
+            لا يمكن الوصول إلى موقع معهد بالعلم نرتقي حالياً.
+        </p>
+        
+        <div class="connection-check">
+            <p>يرجى التحقق من:</p>
+            <ul style="text-align: right; list-style-type: none; padding-right: 20px;">
+                <li>• اتصال الشبكة اللاسلكية (Wi-Fi)</li>
+                <li>• إعدادات البيانات الخلوية</li>
+                <li>• كابلات الشبكة إذا كنت تستخدم اتصال سلكي</li>
+            </ul>
+        </div>
+        
+        <p>سيتم استعادة الاتصال تلقائياً عند عودة الإنترنت</p>
+        
+        <a href="/" class="btn">إعادة المحاولة</a>
+    </div>
+
+    <script>
+        // محاولة إعادة التحميل عند عودة الاتصال
+        function checkConnection() {
+            if (navigator.onLine) {
+                window.location.reload();
+            }
+        }
+        
+        // التحقق كل 5 ثواني
+        setInterval(checkConnection, 5000);
+        
+        // التحقق عند تغير حالة الاتصال
+        window.addEventListener('online', checkConnection);
+    </script>
+</body>
+</html>
