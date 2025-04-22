@@ -1135,12 +1135,6 @@ function filterExams() {
 }
 
 // إغلاق القائمة الجانبية (إذا كانت موجودة)
-function closeSidebar() {
-    const sidebar = document.querySelector('.sidebar');
-    if (sidebar) {
-        sidebar.style.display = 'none';
-    }
-}
 
 // تهيئة النظام عند تحميل الصفحة
 document.addEventListener('DOMContentLoaded', () => {
