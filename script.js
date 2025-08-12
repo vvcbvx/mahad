@@ -3174,4 +3174,60 @@ function setupScheduleFilters() {
             renderSchedules();
         });
     });
+
 }
+
+
+function preloadResources() {
+    const resources = [
+        'logo.png',
+        'المطور.jpg',
+        'amzon.png',
+        'المدينة.png',
+        'examqou.png'
+    ];
+
+    resources.forEach(resource => {
+        const link = document.createElement('link');
+        link.rel = 'preload';
+        link.href = resource;
+        link.as = 'image';
+        document.head.appendChild(link);
+    });
+}
+
+// استدعاء الدالة عند تحميل الصفحة
+window.addEventListener('load', () => {
+    preloadResources();
+    loadTheme();
+});
+
+
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    let progress = 0;
+    const progressText = document.querySelector('.progress-text');
+
+    function updateLoader() {
+        progress += Math.random() * 10;
+        if (progress >= 100) {
+            progress = 100;
+            progressText.textContent = '100%';
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.remove(), 500);
+            }, 300);
+            return;
+        }
+        progressText.textContent = Math.floor(progress) + '%';
+        requestAnimationFrame(updateLoader);
+    }
+
+    requestAnimationFrame(updateLoader);
+});
+
+
+
+
+
+
