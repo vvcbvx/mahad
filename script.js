@@ -409,24 +409,7 @@ window.onclick = function(event) {
 
 // تحديث دالة hideAllSections
 
-window.addEventListener('load', () => {
-    let progress = 0;
-    const progressText = document.querySelector('.progress-text');
-    const loader = document.getElementById('loader');
-    
-    const interval = setInterval(() => {
-        progress += Math.random() * 15;
-        if(progress >= 100) {
-            progress = 100;
-            clearInterval(interval);
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                setTimeout(() => loader.remove(), 500);
-            }, 300);
-        }
-        progressText.textContent = Math.min(progress, 100).toFixed(0) + '%';
-    }, 200);
-});
+
 
 
 // دالة خارجية لربط حدث الإغلاق
@@ -496,19 +479,7 @@ document.querySelectorAll('.lesson-card').forEach(card => {
 
   document.addEventListener('DOMContentLoaded', function() {
     // تحسين أداء التحميل
-    let progress = 0;
-    const progressInterval = setInterval(() => {
-        progress += Math.random() * 10 + 5;
-        if(progress >= 100) {
-            progress = 100;
-            clearInterval(progressInterval);
-            document.getElementById('loader').style.opacity = '0';
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-            }, 500);
-        }
-        document.querySelector('.progress-text').textContent = Math.floor(progress) + '%';
-    }, 100);
+
 
     // تحسين عرض الصور
     document.querySelectorAll('img').forEach(img => {
@@ -3225,6 +3196,7 @@ window.addEventListener('load', () => {
 
     requestAnimationFrame(updateLoader);
 });
+
 
 
 
