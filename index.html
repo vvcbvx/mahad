@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معهد بالعلم نرتقي - دير الزور</title>
+   <!-- في قسم head -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+    <link rel="icon" href="logo.png" type="image/png">
+    <!-- لأجهزة Apple -->
+
+    
+    <!-- لأجهزة Android -->
+
+    
+    <!-- ملف Manifest (اختياري) -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <link rel="stylesheet" href="style.css">
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+    <div id="resa">
+        <a href="#" onclick="showHome()" class="home-btn">
+            <i class="fa-solid fa-house fa-xl" style="color: #f0f2f5;"></i>
+           
+        </a>
+
+
+    </div>
+  
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+
+            <button id="themeToggle" class="theme-toggle">
+                <i class="fas fa-moon"></i>
+            </button>
+
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <div class="logo-text">
+                    <h1>معهد بالعلم نرتقي</h1>
+                    <p>دير الزور - سوريا</p>
+                </div>
+            </div>
+            <button class="menu-btn" id="menuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#" onclick="showHome()">الرئيسية</a></li>
+                    <li><a href="#" onclick="showGrades()">المراحل الدراسية</a></li>
+                    <li><a href="#" onclick="showAbout()">من نحن</a></li>
+                    <li><a href="#" onclick="showContact()">اتصل بنا</a></li>
+
+
+
+                </ul>
+            </nav>
+        </div>
+    </header>
+<!-- داخل section class="hero" بعد div class="home-icons" -->
+
+
+
+
+
+
+
+    <!-- Sidebar -->
+    <div class="overlay" id="overlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>القائمة</h3>
+            <button class="close-btn" id="closeBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul class="sidebar-links">
+            <li><a href="#" onclick="showHome()">الرئيسية</a></li>
+            
+            <li><a href="#" onclick="showGrades()">المراحل الدراسية</a></li>
+            <li><a href="#" onclick="showExams()"><i class="fas fa-file-pdf"></i> الامتحانات</a></li>
+            <li><a href="#" onclick="showTeachers()"><i class="fas fa-chalkboard-teacher"></i> المعلمين</a></li>
+            <li><a href="#" onclick="showAbout()">من نحن</a></li>
+            <li><a href="#" onclick="showContact()">اتصل بنا</a></li>
+
+            
+<!-- إضافة رابط في القائمة الجانبية -->
+<li><a href="#" onclick="showDeveloper()"><i class="fas fa-code"></i> المطور</a></li>
+
+<li class="nav-item">
+    <a href="dashboard.html" class="nav-link">
+        <i class="fas fa-tachometer-alt"></i>
+        <span>لوحة التحكم</span>
+    </a>
+</li>
+
+
+            <li class="share-section">
+                <div class="share-title">
+                    <i class="fas fa-share-alt"></i>
+                    مشاركة الموقع
+                </div>
+                <div class="social-share">
+                    <a href="#" class="facebook" onclick="shareOnFacebook()">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="twitter" onclick="shareOnTwitter()">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="whatsapp" onclick="shareOnWhatsApp()">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="telegram" onclick="shareOnTelegram()">
+                         <i class="fab fa-telegram-plane"></i>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+        </ul>
+    </div>
+
+
+
+<!-- إضافة هذه البطاقة بعد div.home-icons -->
+
+
+
+
+
+
+    <!-- قسم المعلمين -->
+    <section class="teachers-section" id="teachers" style="display: none;">
+        <!-- نظام التحميل -->
+        <div id="teachersLoader" class="teachers-loader">
+            <div class="loader-content">
+                <div class="loader-spinner">
+                    <div class="spinner-circle"></div>
+                    <img src="logo.png" alt="بالعلم نرتقي" class="institute-logo">
+                </div>
+                <p class="loader-text">جاري تحميل بيانات الأساتذة...</p>
+            </div>
+        </div>
+    
+        <!-- محتوى الأساتذة -->
+        <div class="section-header">
+            <h2><i class="fas fa-chalkboard-teacher"></i> كادرنا التعليمي</h2>
+        </div>
+    
+        <div id="teachersContainer" class="teachers-grid">
+            <!-- سيتم تعبئته ديناميكيًا -->
+        </div>
+    </section>
+
+<!-- نافذة تفاصيل المعلم -->
+<div class="teacher-modal" id="teacherModal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeTeacherModal()">&times;</span>
+        <img class="teacher-avatar" id="modalAvatar" src="" alt="صورة المعلم">
+        <h2 id="modalName"></h2>
+        <div class="teacher-info">
+            <p><i class="fas fa-chalkboard-teacher"></i> التخصص: <span id="modalSubject"></span></p>
+            <p><i class="fas fa-award"></i> الشهادات: <span id="modalCertificates"></span></p>
+            <p><i class="fas fa-briefcase"></i> سنوات الخبرة: <span id="modalExperience"></span></p>
+            <p><i class="fas fa-book-open"></i> عدد المحاضرات الأسبوعية: <span id="modalLectures"></span></p>
+        </div>
+        <div class="teacher-bio" id="modalBio"></div>
+        
+        <!-- وسائل التواصل -->
+        <div class="teacher-contact">
+            <h3>وسائل التواصل:</h3>
+            <div class="contact-methods">
+                <a href="#" id="modalWhatsapp" class="whatsapp-contact">
+                    <i class="fab fa-whatsapp"></i> واتساب
+                </a>
+                <a href="#" id="modalPhone" class="phone-contact">
+                    <i class="fas fa-phone"></i> اتصال
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+  <!-- استبدال قسم المطور الحالي بهذا الكود -->
+<section class="developer-section" id="developer" style="display: none;">
+    <div class="developer-container">
+        <div class="developer-hero">
+            <div class="developer-image">
+                <img src="المطور.jpg" alt="عبد المجيد المطور">
+            </div>
+            <div class="developer-intro">
+                <h1>عبد المجيد</h1>
+                <p class="developer-title">مطور ويب و تطبيقات</p>
+                <div class="social-icons">
+                    <!-- تيك توك -->
+                    <a href="https://www.tiktok.com/@io_ccoi?is_from_webapp=1&sender_device=pc" target="_blank" class="tiktok-icon">
+                      <i class="fab fa-tiktok"></i>
+                    </a>
+                    
+                    <!-- إنستغرام -->
+                    <a href="https://www.instagram.com/io_ccoi" target="_blank" class="instagram-icon">
+                      <i class="fab fa-instagram"></i>
+                    </a>
+                    
+                    <!-- تليجرام -->
+                    <a href="https://t.me/asccjg7" target="_blank" class="telegram-icon">
+                      <i class="fab fa-telegram-plane"></i>
+                    </a>
+                  </div>
+            </div>
+        </div>
+
+        <div class="developer-content">
+            <section class="developer-about">
+                <h2><i class="fas fa-user"></i> عني</h2>
+                <div class="about-content">
+                    <p>مطور ويب متخصص في إنشاء تطبيقات ويب تفاعلية وسريعة. لدي خبرة في HTML, CSS, JavaScript وتقنيات الويب الحديثة.</p>
+                    <p>أحب تحويل الأفكار إلى واقع رقمي مع التركيز على تجربة المستخدم والأداء المتميز.</p>
+                </div>
+            </section>
+
+            <section class="developer-skills">
+                <h2><i class="fas fa-code"></i> المهارات التقنية</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>HTML5 & CSS3</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>JavaScript</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>React</span>
+                            <span>40%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Node.js</span>
+                            <span>25%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="developer-projects">
+                <h2><i class="fas fa-project-diagram"></i> مشاريعي</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="amzon.png" alt="موقع أمازون دير الزور">
+                        </div>
+                        <div class="project-info">
+                            <h3>أمازون دير الزور</h3>
+                            <p>منصة تسوق إلكتروني مستوحاة من أمازون العالمية ولكن لمحافظة دير الزور</p>
+                            <a href="https://vvcbvx.github.io/zor" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> زيارة الموقع
+                            </a>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="المدينة.png" alt="مطعم المدينة">
+                        </div>
+                        <div class="project-info">
+                            <h3>مطعم المدينة</h3>
+                            <p>موقع لمطعم المدينة يقدم واجهة حديثة لعرض القائمة   الخاصه  بالماكولات  او المشويات </p>
+                            <a href="https://vvcbvx.github.io/AL--mdenh" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i> زيارة الموقع
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="developer-stats">
+                <h2><i class="fas fa-chart-line"></i> إحصائيات</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-code-branch"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" data-count="6">0</span>
+                            <span class="stat-label">مشروع مكتمل</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" data-count="1000">0</span>
+                            <span class="stat-label" >ساعة برمجة تقريبا</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-coffee"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-number" data-count="0">0</span>
+                            <span class="stat-label">كوب قهوة</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="developer-contact">
+                <h2><i class="fas fa-envelope"></i> تواصل معي</h2>
+                <div class="contact-content">
+                    <p>إذا كنت مهتمًا بالتعاون أو لديك أي استفسار، لا تتردد في مراسلتي:</p>
+                    <a href="mailto:bdalmjydghnambfdy@gmail.com" class="contact-email">
+                        <i class="fas fa-envelope"></i> bdalmjydghnambfdy@gmail.com
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+    
+
+
+
+
+
+
+
+    
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h2>مرحباً بكم في معهد بالعلم نرتقي</h2>
+                <p>مؤسسة تعليمية رائدة في دير الزور تهدف إلى تخريج جيل متميز علمياً وأخلاقياً</p>
+                
+                <!-- أيقونات الصفحة الرئيسية -->
+
+
+
+                <div class="home-icons">
+                    <div class="home-icon" onclick="showGrades()">
+                        <div class="icon-circle">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <span class="icon-text">المراحل الدراسية</span>
+                    </div>
+
+                    <div class="home-icon" onclick="showTeachers()">
+                        <div class="icon-circle">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <span class="icon-text">المعلميين </span>
+
+                    </div>
+                
+                    <div class="home-icon" onclick="showExams()">
+                        <div class="icon-circle">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <span class="icon-text">الامتحانات</span>
+                    </div>
+
+<div class="home-icon" onclick="showSchedules()">
+    <div class="icon-circle">
+        <i class="fas fa-calendar-alt"></i>
+    </div>
+    <span class="icon-text">الجداول الدراسية</span>
+</div>
+
+               
+                    <div class="home-icon" onclick="showContact()">
+                        <div class="icon-circle">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <span class="icon-text">اتصل بنا</span>
+         
+
+                    </div>
+
+
+
+               
+            </div>
+
+<!-- قسم التحديثات في الصفحة الرئيسية -->
+
+
+<!-- بطاقة الامتحانات السريعة -->
+
+
+
+<div id="qou" class="quick-exam-promo" onclick="showQuickExams()">
+    <div class="quick-exam-header">
+        <i class="fas fa-bolt"></i>
+        <h3>الامتحانات السريعة</h3>
+    </div>
+    <div class="quick-exam-image">
+        <img src="examqou.png" alt="نموذج امتحان سريع">
+    </div>
+    <div class="quick-exam-footer">
+        <p>اختبر معلوماتك الآن!</p>
+        <button class="quick-exam-btn">ابدأ الامتحان</button>
+    </div>
+</div>
+        </section>
+
+
+<!-- قسم التحديثات في الصفحة الرئيسية -->
+
+
+
+<!-- زر عرض التحديثات -->
+<div class="updates-toggle-container">
+    <button class="updates-toggle-btn" onclick="toggleUpdates()">
+        <i class="fas fa-bell"></i>
+        عرض التحديثات
+        <span class="updates-badge" id="updatesCount">0</span>
+    </button>
+</div>
+
+<!-- قسم التحديثات -->
+<section class="updates-section" id="updatesSection" style="display: none;">
+    <div class="updates-header">
+        <h3><i class="fas fa-bullhorn"></i> آخر التحديثات والأخبار</h3>
+        <button class="close-updates" onclick="toggleUpdates()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <div id="updatesContainer" class="updates-container">
+        <!-- سيتم تعبئته ديناميكياً -->
+    </div>
+</section>
+       
+
+
+
+<!-- بطاقة الامتحانات السريعة -->
+
+
+
+
+
+        <!-- Grade Selection Section -->
+        <section class="grade-selection" id="grades">
+            <h2 class="grade-title">المراحل الدراسية</h2>
+            <div class="grade-cards">
+                <div class="grade-card" onclick="showBranches('تاسع')">
+                    <i class="fas fa-book-open"></i>
+                    <h3>الصف التاسع</h3>
+                    <p>المرحلة الإعدادية - تأسيس الطلاب علمياً وأكاديمياً</p>
+                </div>
+                <div class="grade-card" onclick="showBranches('بكالوريا')">
+                    <i class="fas fa-user-graduate"></i>
+                    <h3>مرحلة البكالوريا</h3>
+                    <p>المرحلة الثانوية - التحضير لامتحان البكالوريا</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Branches Section -->
+        <section class="branches-section" id="branchesSection">
+            <a href="#" onclick="backToGrades()" class="back-btn">
+                <i class="fas fa-arrow-right"></i> العودة إلى المراحل
+            </a>
+            <h2 class="section-title" id="branchesTitle">شعب الصف التاسع</h2>
+            <div class="branch-cards" id="branchCards">
+                <!-- Branches will be loaded here dynamically -->
+            </div>
+        </section>
+
+        <!-- Branch Details Section -->
+        <section class="branch-details" id="branchDetails">
+            <a href="#" onclick="backToBranches()" class="back-btn">
+                <i class="fas fa-arrow-right"></i> العودة إلى الشعب
+            </a>
+            
+            <div class="branch-details-header">
+                <h2 id="branchDetailTitle">الشعبة الأولى - الصف التاسع</h2>
+                <p id="branchDetailDesc">شعبة علمية متميزة تحتوي على 30 طالباً وطالبة</p>
+                
+                <div class="progress-container">
+                    <div class="progress-bar" id="branchProgress" style="width: 75%"></div>
+                </div>
+                
+                <div class="branch-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-users"></i>
+                        <span>عدد الطلاب</span>
+                        <strong id="studentsCount">30</strong>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>تاريخ البدء</span>
+                        <strong id="startDate">01/09/2023</strong>
+                    </div>
+                 
+                </div>
+            </div>
+            
+            <div class="branch-achievements">
+                <h3 class="top-students-title">أفضل 3 طلاب في الشعبة</h3>
+                <div class="students-container" id="topStudents">
+                    <!-- Top students will be loaded here dynamically -->
+                </div>
+            </div>
+            
+            <div class="students-list">
+                <h3 class="students-list-title">قائمة طلاب الشعبة</h3>
+                <table class="students-table">
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>المعدل</th>
+                            <th>الحضور</th>
+                            <th>الإنجازات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentsTableBody">
+                        <!-- Students will be loaded here dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="جامعه.jpg" alt="معهد بالعلم نرتقي">
+                </div>
+                <div class="about-content">
+                    <h2>من نحن</h2>
+                    <p>معهد "بالعلم نرتقي" مؤسسة تعليمية تأسست عام 2020 في مدينة دير الزور السورية، بهدف تقديم تعليم متميز لطلاب المرحلتين الإعدادية والثانوية.</p>
+                    <p>نحن نؤمن بأن العلم هو أساس تقدم الأمم، ونسعى جاهدين لتخريج جيل واعٍ ومثقف قادر على مواكبة متطلبات العصر والمساهمة في بناء المجتمع.</p>
+                    
+                    <div class="mission-vision">
+                        <h3>رؤيتنا ورسالتنا</h3>
+                        <ul>
+                            <li>تقديم تعليم متميز وفق أعلى المعايير المحلية</li>
+                            <li>تنمية مهارات التفكير النقدي والإبداعي لدى الطلاب</li>
+                            <li>تعزيز القيم الأخلاقية والوطنية</li>
+                            <li>تهيئة الطلاب للنجاح في امتحانات البكالوريا</li>
+                            <li>توفير بيئة تعليمية محفزة وممتعة</li>
+                            <li>استخدام أفضل الأساليب   التعليمية  الخاصة بنا</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact">
+            <div class="contact-container">
+                <h2 class="contact-title">اتصل بنا</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>معلومات التواصل</h3>
+                        <ul>
+                           
+
+                            <div class="contact-container">
+                                <h2 class="contact-title">اتصل بنا عبر واتساب</h2>
+                                
+                                <div class="whatsapp-cards">
+                                    <!-- بطاقات الأرقام -->
+                                    <div class="whatsapp-card" data-number="+963123456789">
+                                        <div class="whatsapp-icon">
+                                            <i class="fab fa-whatsapp"></i>
+                                        </div>
+                                        <div class="whatsapp-info">
+                                            <h3>الأستاذ أحمد </h3>
+                                            <p>أجتماعيات </p>
+                                            <span class="whatsapp-number">+963 982 084 145</span>
+                                        </div>
+                                    </div>
+                        
+                                    <div class="whatsapp-card" data-number="+963987654321">
+                                        <div class="whatsapp-icon">
+                                            <i class="fab fa-whatsapp"></i>
+                                        </div>
+                                        <div class="whatsapp-info">
+                                            <h3>الأستاذ عبد القادر </h3>
+                                            <p>الرياضيات </p>
+                                            <span class="whatsapp-number">+963 930 783 676</span>
+                                        </div>
+                                    </div>
+                        
+                                    <div class="whatsapp-card" data-number="+963555444333">
+                                        <div class="whatsapp-icon">
+                                            <i class="fab fa-whatsapp"></i>
+                                        </div>
+                                        <div class="whatsapp-info">
+                                            <h3>الأستاذ موفق </h3>
+                                            <p>الأنكليزي </p>
+                                            <span class="whatsapp-number">+963 967 424 107</span>
+                                        </div>
+                                    </div>
+                        
+                                    <div class="whatsapp-card" data-number="+963111222333">
+                                        <div class="whatsapp-icon">
+                                            <i class="fab fa-whatsapp"></i>
+                                        </div>
+                                        <div class="whatsapp-info">
+                                            <h3>الأستاذ احمد </h3>
+                                            <p> علوم عامة</p>
+                                            <span class="whatsapp-number">+963 995 721 403</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                          
+                                <i class="fas fa-clock"></i>
+                                <span>     أوقات الدوام: من السبت إلى الخميس -حضور السبت يكون- من 9 صباحاً حتى 12 مساءً -حضور باقي الايام من 12مساء حتى 4 عصرا </span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-content">
+                            <div class="location-info">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="address">
+                                    <h3>موقعنا على الخريطة</h3>
+                                    <p>دير الزور - غرانيج -مجمع المدارس</p>
+                                </div>
+                            </div>
+                            <button class="map-button" onclick="openGoogleMaps()">
+                                اذهب إلينا
+                                <i class="fas fa-directions"></i>
+                            </button>
+                        </div>
+                    </div>
+
+
+
+                    <div class="contact-form">
+                        <h3>أرسل رسالة</h3>
+                        <form id="messageForm">
+                            <div class="form-group">
+                                <label for="name">الاسم الكامل</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">الرسالة</label>
+                                <textarea id="message" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">إرسال الرسالة</button>
+                            <p id="form-message" style="margin-top: 15px;"></p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+    <div class="section-container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+<section class="exams-section" id="exams" style="display: none;">
+    <div class="main-container">
+        <h2 class="section-title">بنك الامتحانات</h2>
+        
+        <div class="exams-filter">
+            <button class="filter-btn active" data-filter="all">الكل</button>
+            <button class="filter-btn" data-filter="t9">تاسع</button>
+            <button class="filter-btn" data-filter="bac">بكالوريا</button>
+
+            <button class="filter-btn quick-exams-btn" onclick="showQuickExams()">
+                <i class="fas fa-bolt"></i> الامتحانات السريعة
+            </button>
+        </div>
+
+        </div>
+        
+        <div class="subject-filter" id="subjectFilter" style="display: none;">
+            <button class="filter-btn" data-filter="math">الرياضيات</button>
+            <button class="filter-btn" data-filter="science">العلوم</button>
+            <button class="filter-btn" data-filter="arabic">العربية</button>
+            <button class="filter-btn" data-filter="english">الإنجليزية</button>
+            <button class="filter-btn" data-filter="french">الفرنسية</button>
+            <button class="filter-btn" data-filter="social">الاجتماعيات</button>
+            <button class="filter-btn" data-filter="religion">الديانة</button>
+        </div>
+
+
+        <div id="examsLoader" class="exams-loader">
+            <div class="loader-content">
+                <div class="spinner"></div>
+                <p>جاري تحميل الامتحانات...</p>
+            </div>
+        </div>
+
+
+
+
+
+        
+        <div class="exams-grid" id="examsContainer"></div>
+
+
+<!-- نافذة عرض PDF -->
+<div class="pdf-viewer-modal" id="pdfViewerModal">
+    <div class="pdf-viewer-container">
+        <div class="pdf-viewer-header">
+            <button class="pdf-viewer-close" onclick="closePdfViewer()">&times;</button>
+            <h3 id="pdfViewerTitle">عرض الامتحان</h3>
+            <div class="pdf-viewer-controls">
+                <button class="pdf-control-btn" onclick="prevPage()">
+                    <i class="fas fa-arrow-right"></i> السابق
+                </button>
+                <span id="pageNum">1 / 1</span>
+                <button class="pdf-control-btn" onclick="nextPage()">
+                    التالي <i class="fas fa-arrow-left"></i>
+                </button>
+                <button class="pdf-control-btn" onclick="zoomIn()">
+                    <i class="fas fa-search-plus"></i> تكبير
+                </button>
+                <button class="pdf-control-btn" onclick="zoomOut()">
+                    <i class="fas fa-search-minus"></i> تصغير
+                </button>
+            </div>
+        </div>
+        <div class="pdf-viewer-content">
+            <canvas id="pdfCanvas"></canvas>
+        </div>
+    </div>
+</div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+    
+
+    
+</section>
+
+
+<!-- قسم الامتحانات السريعة -->
+<section class="quick-exams-section" id="quickExams" style="display: none;">
+    <div class="main-container">
+        <h2 class="section-title">الامتحانات السريعة التفاعلية</h2>
+        
+        <div class="quick-exams-filter">
+            <button class="filter-btn active" data-filter="all">الكل</button>
+            <button class="filter-btn" data-filter="t9">تاسع</button>
+            <button class="filter-btn" data-filter="bac">بكالوريا</button>
+            <button class="filter-btn" data-filter="math">رياضيات</button>
+            <button class="filter-btn" data-filter="arabic">عربية</button>
+            <button class="filter-btn" data-filter="science">علوم</button>
+        </div>
+        
+        <div id="quickExamsLoader" class="quick-exams-loader">
+            <div class="loader-content">
+                <div class="spinner"></div>
+                <p>جاري تحميل الامتحانات السريعة...</p>
+            </div>
+        </div>
+        
+        <div class="quick-exams-grid" id="quickExamsContainer"></div>
+    </div>
+    
+    <!-- نافذة الامتحان -->
+    <div class="quiz-modal" id="quizModal">
+        <div class="quiz-modal-content">
+            <div class="quiz-header">
+                <button class="close-btn-qouq" onclick="closeQuiz()">
+                    <i class="fa-solid fa-circle-xmark fa-lg" style="color: #ff0a60;"></i>
+                </button>
+
+                <h3 id="quizTitle">عنوان الامتحان</h3>
+                <div class="quiz-progress">
+
+
+
+                    <span id="currentQuestionNum">1</span> / <span id="totalQuestions">10</span>
+                </div>
+            </div>
+            
+
+
+
+            <div class="quiz-body">
+                <div class="question-container">
+                    <p class="question-text" id="questionText">نص السؤال هنا...</p>
+                    <div class="options-container" id="optionsContainer"></div>
+                </div>
+                
+                <div class="explanation-container" id="explanationContainer" style="display: none;">
+                    <h4>التفسير:</h4>
+                    <p id="explanationText"></p>
+                </div>
+            </div>
+            
+            <div class="quiz-footer">
+                <button class="quiz-btn" id="prevBtn" onclick="prevQuestion()">
+                    <i class="fas fa-arrow-right"></i> السابق
+                </button>
+                <button class="quiz-btn reveal-btn" id="revealBtn" onclick="revealAnswer()">
+                    <i class="fas fa-lightbulb"></i> كشف الإجابة
+                </button>
+                <button class="quiz-btn" id="nextBtn" onclick="nextQuestion()">
+                    التالي <i class="fas fa-arrow-left"></i>
+                </button>
+                <button class="quiz-btn submit-btn" id="submitBtn" onclick="submitQuiz()" style="display: none;">
+                    <i class="fas fa-check-circle"></i> إنهاء
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- نافذة النتائج -->
+    <div class="results-modal" id="resultsModal">
+        <div class="results-modal-content">
+            <div class="results-header">
+                <h3>نتيجة الامتحان</h3>
+                <button class="close-btn" onclick="closeResults()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="results-body">
+                <div class="score-circle">
+                    <div class="circle-progress">
+                        <svg class="progress-ring" width="120" height="120">
+                            <circle class="progress-ring-circle" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                        </svg>
+                        <span id="scorePercentage">85%</span>
+                    </div>
+                    <p id="feedbackText">جيد جداً</p>
+                </div>
+                
+                <div class="score-details">
+                    <div class="detail-item">
+                        <span>الإجابات الصحيحة:</span>
+                        <strong id="correctAnswers">8</strong> / <span id="totalQuestionsResult">10</span>
+                    </div>
+                    <div class="detail-item">
+                        <span>الدرجة الكاملة:</span>
+                        <strong id="totalMarks">20</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span>درجتك:</span>
+                        <strong id="userScore">17</strong>
+                    </div>
+                    <div class="feedback-message" id="feedbackMessage">
+                        أداء جيد، لكن يمكنك تحسينه بالمزيد من الممارسة.
+                    </div>
+                </div>
+                
+                <div class="wrong-answers-section">
+                    <h4>الأخطاء التي تحتاج مراجعة:</h4>
+                    <div class="wrong-answers-list" id="wrongAnswersList"></div>
+                </div>
+            </div>
+            
+            <div class="results-footer">
+                <button class="btn retry-btn" onclick="retryQuiz()">
+                    <i class="fas fa-redo"></i> إعادة المحاولة
+                </button>
+                <button class="btn close-results-btn" onclick="closeResults()">
+                    <i class="fas fa-check"></i> حسناً
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+<!-- قسم الجداول الدراسية -->
+<section class="schedules-section" id="schedules" style="display: none;">
+    <div class="main-container">
+        <h2 class="section-title">الجداول الدراسية</h2>
+        
+        <div class="grade-selector">
+             <button class="grade-btn" data-grade="bac">البكالوريا</button>
+            <button class="grade-btn " data-grade="t9">الصف التاسع</button>
+           
+        </div>
+        
+        <div id="schedulesLoader" class="schedules-loader">
+            <div class="loader-content">
+                <div class="loader-spinner">
+                    <div class="spinner-circle"></div>
+                    <img src="logo.png" alt="بالعلم نرتقي" class="institute-logo">
+                </div>
+                <p class="loader-text">جاري تحميل الجداول الدراسية...</p>
+            </div>
+        </div>
+        
+        <div class="schedule-container" id="scheduleContainer">
+            <!-- سيتم تعبئته ديناميكيًا -->
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+        <button id="zr" class="section-toggle" onclick="toggleSection('registration')">
+            <i class="fas fa-calendar-check"></i> مواعيد التسجيل
+        </button>
+        <div class="section-content" id="registrationContent">
+            <div class="content-box">
+                <button class="close-btn" onclick="closeSection('registration')">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h3 class="section-title">المواعيد والدورات القادمة</h3>
+                
+                <div class="registration-cards">
+                    <!-- سيتم إضافة البطاقات ديناميكيًا -->
+                </div>
+    
+                <div class="registration-steps">
+                    <h4>خطوات التسجيل:</h4>
+                    <ol class="steps-list">
+                        
+                        <li>تحميل المستندات المطلوبة</li>
+                        <li>دفع الرسوم في الوقت المناسب</li>
+                        <li>القدوم الى المعهد من اجل مقابلة الادارة ويستح اصطحاب ولي الامر</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+        <button class="show-fees-btn" id="showFees">
+            <i class="fas fa-coins"></i> عرض الرسوم الدراسية
+        </button>
+        
+        <!-- طبقة الرسوم الدراسية -->
+        <div class="fees-overlay" id="feesOverlay">
+
+
+
+            <div class="fees-modal">
+ 
+                <h2>الرسوم الدراسية للعام 2024</h2>
+                <button class="close-btn" id="closeFees">&times;</button>
+                
+                <div class="fees-grid">
+                    <!-- الصف التاسع -->
+                    <div class="fee-card">
+                        <h3><i class="fas fa-book"></i> الصف التاسع</h3>
+                        <div class="fee-details">
+                            <div class="fee-item">
+                                <span>الرسوم الشهرية:</span>
+                                <span class="price">350,000 ل.س</span>
+                            </div>
+                            <div class="fee-item">
+                                <span>الرسوم السنوية:</span>
+                                <span class="price">3,500,000 ل.س</span>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- البكالوريا -->
+                    <div class="fee-card">
+                        <h3><i class="fas fa-graduation-cap"></i> البكالوريا</h3>
+                        <div class="fee-details">
+                            <div class="fee-item">
+                                <span>الرسوم الشهرية:</span>
+                                <span class="price">450,000 ل.س</span>
+                            </div>
+                            <div class="fee-item">
+                                <span>الرسوم السنوية:</span>
+                                <span class="price">4,500,000 ل.س</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <!-- تحديث قسم شروط القبول -->
+    <div id="zr" class="section-container">
+        <button class="section-toggle" onclick="toggleSection('conditions')">
+            <i class="fas fa-file-signature"></i> شروط القبول
+        </button>
+        <div class="section-content" id="conditionsContent">
+            <div class="content-box">
+                <button class="close-btn" onclick="closeSection('conditions')">
+                    <i class="fas fa-times"></i>
+                </button>
+                <h3 class="section-title">شروط القبول</h3>
+                <div class="conditions-grid">
+                    <div class="condition-card">
+                        <div class="condition-icon">
+                            <i class="fas fa-age"></i>
+                        </div>
+                        <h5>المتطلبات العمرية</h5>
+                        <p>مطابقة الفئة العمرية للمرحلة الدراسية</p>
+                    </div>
+                    <div class="condition-card">
+                        <div class="condition-icon">
+                            <i class="fas fa-scroll"></i>
+                        </div>
+                        <h5>المستندات المطلوبة</h5>
+                        <p>تقديم لنا ولي الامر من اجل التواصل معه اذا لزم الامر</p>
+                    </div>
+                    <div class="condition-card">
+                        <div class="condition-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h5>الالتزام الأخلاقي</h5>
+                        <p>احترام القوانين والأنظمة الداخلية للمعهد</p>
+                    </div>
+                    <div class="condition-card">
+                        <div class="condition-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h5>التعاون</h5>
+                        <p>المساهمة في الحفاظ على البيئة التعليمية</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+<!-- Exams Section -->
+
+
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>عن المعهد</h3>
+                <p>معهد "بالعلم نرتقي" مؤسسة تعليمية تهدف إلى تقديم تعليم متميز لطلاب المرحلتين الإعدادية والثانوية في دير الزور.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>روابط سريعة</h3>
+                <ul class="footer-links">
+                    <li><a href="#" onclick="showHome()"><i class="fas fa-home"></i> الرئيسية</a></li>
+                    <li><a href="#" onclick="showGrades()"><i class="fas fa-graduation-cap"></i> المراحل الدراسية</a></li>
+                    <li><a href="#" onclick="showAbout()"><i class="fas fa-info-circle"></i> من نحن</a></li>
+                    <li><a href="#" onclick="showContact()"><i class="fas fa-envelope"></i> اتصل بنا</a></li>
+                </ul>
+            </div>
+            <div class="collapsible-sections">
+                <!-- قسم الرسوم الدراسية -->
+      
+        <div class="copyright">
+            <p>جميع الحقوق محفوظة &copy; 2025 معهد بالعلم نرتقي - دير الزور، سوريا</p>
+        </div>
+    </footer>
+
+
+<!-- Teacher Section -->
+
+
+
+
+<script src="phrases-widget.js"></script>
+<script>
+    // تهيئة الإضافة عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', function() {
+        new PhrasesWidget({
+            containerId: 'my-phrases-widget',
+            jsonUrl: 'phrases.json'
+        });
+    });
+
+
+</script>
+
+<script src="examsqouk.js"></script>
+
+<script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('ServiceWorker registration successful');
+          })
+          .catch(function(err) {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+      });
+    }
+    </script>
+
+
+
+
+
+    <script  src="script.js">
+
+
+    </script>
+
+
+
+<div id="notification-container" class="notification-container"></div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
